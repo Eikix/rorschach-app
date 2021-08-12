@@ -69,7 +69,7 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
                                 </div>
                             </div>
                         </div>
-                        <button className="text-xl text-color1 p-3 rounded-lg hover:bg-gray-100 w-1/8 border shadow-md lg:p-6 p-3" type="submit">Sauvegarder et passer à la planche suivante</button>
+                        <button className="text-xl text-color1 p-3 rounded-lg hover:bg-gray-100 w-1/8 border shadow-md lg:p-6 p-3 mx-4 lg:mx-0" type="submit">Sauvegarder et passer à la planche suivante</button>
 
                     </Form>
                 </div>
