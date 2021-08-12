@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import NavItem from "./NavItem";
 import {
     HomeIcon,
@@ -14,7 +13,6 @@ function Nav() {
         <nav className="flex flex-col sm:flex-row justify-between items-center font-light border-b">
             <Link href="/">
                 <div className="hover:text-mediumblue flex flex-col sm:flex-row sm:px-12 cursor-pointer transform space-x-6">
-                    <Image className="rounded-full invisible lg:visible" src="/images/tazartes-sitting.jpg" height={50} width={50} />
                     <h1 className="text-3xl font-normal text-color2 text-center lg:text-left m-4 sm:m-0" > <a>Rorschach</a> </h1>
                 </div>
             </Link>
