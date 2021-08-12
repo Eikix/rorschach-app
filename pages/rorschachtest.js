@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import Planche from "../components/Planche";
 import { useState } from "react";
 
-const rorschachtest = () => {
+const RorschachTest = () => {
     const [selectedPlanche, setSelectedPlanche] = useState(1);
     const [savedPlanches, setSavedPlanches] = useState({});
 
@@ -66,4 +66,4 @@ const rorschachtest = () => {
     )
 }
 
-export default rorschachtest
+export default RorschachTest
