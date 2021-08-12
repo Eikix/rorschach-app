@@ -39,7 +39,7 @@ const RorschachTest = () => {
 
     return (
         <Layout title='Rorschach Test' description="Faites passer un test de Rorschach en ligne.">
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center mb-12">
                 {selectedPlanche===1 && <Planche idNumber="1" savePlanche={savePlanche} savedPlanches={savedPlanches}/>}
                 {selectedPlanche===2 && <Planche idNumber="2" savePlanche={savePlanche} savedPlanches={savedPlanches}/>}
                 {selectedPlanche===3 && <Planche idNumber="3" savePlanche={savePlanche} savedPlanches={savedPlanches}/>}

@@ -17,7 +17,7 @@ function Nav() {
                 </div>
             </Link>
             
-            <div className="flex flex-grow text-color2 justify-around max-w-2xl px-3 pt-5 pb-2 space-x-16 sm:space-x-0">
+            <div className="flex flex-grow text-color2 justify-around max-w-2xl px-6 md:px-3 pt-5 pb-2 space-x-16 sm:space-x-0">
                 <Link href="/">
                     <a><NavItem title="Accueil" Icon={HomeIcon}/></a>
                 </Link>
@@ -31,7 +31,7 @@ function Nav() {
                 </Link>
 
                 <Link href="/rorschachtest">
-                    <a><NavItem title="Commencer un test" Icon={AcademicCapIcon} /></a>
+                    <a><NavItem title="" Icon={AcademicCapIcon} /></a>
                 </Link>
 
             </div>

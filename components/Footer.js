@@ -2,7 +2,7 @@ const Footer = () => {
     return (
         <footer className="">
             <hr />
-            <ul className="flex flex-row text-xs md:text-base justify-around my-6">
+            <ul className="flex flex-row text-xs md:text-base justify-around my-6 mx-3">
                 <li>
                     Design et conception par <a className="hover:text-red-900" href="https://www.linkedin.com/in/florence-damien-a47ba116b/">Florence Damien</a>
                 </li>
