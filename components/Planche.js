@@ -30,7 +30,7 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
             >
                 <div className="mb-6 lg:mb-12">
                     <Form className="flex flex-col items-center">
-                        <div className="flex flex-col lg:flex-row space-x-8 lg:space-x-12 xl:space-x-12 items-start mb-6 lg:mb-12">
+                        <div className="flex flex-col lg:flex-row lg:space-x-12 xl:space-x-12 items-start mb-6 lg:mb-12">
                             <div className="flex flex-col items-start justify-center space-y-4 lg:space-y-8 rounded-lg border shadow-md lg:p-6 p-3">
                             <FormikSelect label="Localisation" name='localisation'>
                                 {localisationList.map(localisation => <option key={localisation+idNumber} value={localisation}>{localisation}</option>)}
