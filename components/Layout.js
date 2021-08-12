@@ -4,7 +4,7 @@ import Header from "./Header"
 
 const Layout = ({children, title, description}) => {
     return (
-        <div className="flex flex-col">
+        <div className="">
             <CustomHead title={title} description={description} />
             <Header/>
                 <main>
