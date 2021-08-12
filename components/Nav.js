@@ -17,7 +17,7 @@ function Nav() {
                 </div>
             </Link>
             
-            <div className="flex flex-grow text-color2 justify-evenly max-w-2xl px-3 pt-5 pb-2 space-x-16 sm:space-x-0">
+            <div className="flex flex-grow text-color2 justify-around max-w-2xl px-3 pt-5 pb-2 space-x-16 sm:space-x-0">
                 <Link href="/">
                     <a><NavItem title="Accueil" Icon={HomeIcon}/></a>
                 </Link>
