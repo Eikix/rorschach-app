@@ -6,7 +6,7 @@ const FormikTextInput = ({ label, ...props }) => {
    // message if the field is invalid and it has been touched (i.e. visited)
    const [field, meta] = useField(props);
    return (
-     <div className="flex flex-col mb-4 md:mb-6">
+     <div className="flex flex-col">
        <label className="text-xl" htmlFor={props.id || props.name}>{label}</label>
        <input className="text-xl" {...field} {...props} />
        {meta.touched && meta.error ? (

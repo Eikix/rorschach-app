@@ -1,27 +1,50 @@
 import { Formik, Form } from "formik";
 import * as Yup from 'yup';
 import Image from "next/image";
-import FormikSelect from "./FormikSelect";
+import FormikSelect from "./myFormikComponents/FormikSelect";
 import {localisationList, determinantList, signesList, contenusList, phenomenesList} from '../utils/details/plancheDetails';
-import FormikCheckbox from "./FormikCheckbox";
+import FormikCheckbox from "./myFormikComponents/FormikCheckbox";
 import RefusButton from "./RefusButton";
 import ReinitializeButton from "./ReinitializeButton";
+import FormikTextArea from "./myFormikComponents/FormikTextArea";
 
 const Planche = ({idNumber, savePlanche, savedPlanches}) => {
+
     const initLocalisation = savedPlanches[idNumber]?.localisation ?? '';
+    const initLocalisationComment = savedPlanches[idNumber]?.localisationComment ?? '';
     const initDeterminant = savedPlanches[idNumber]?.determinant ?? '';
+    const initDeterminantComment = savedPlanches[idNumber]?.determinantComment ?? '';
     const initDeterminantSign = savedPlanches[idNumber]?.determinantSign ?? '';
     const initContenus = savedPlanches[idNumber]?.contenus ?? [];
+    const initContenusComment = savedPlanches[idNumber]?.contenusComment ?? '';
     const initPhenomenes = savedPlanches[idNumber]?.phenomenes ?? [];
+    const initPhenomenesComment = savedPlanches[idNumber]?.phenomenesComment ?? '';
 
 
     const emptyPlanche = {
         localisation: "",
+        localisationComment: "",
         determinant: "",
+        determinantComment: "",
         determinantSign: "",
         contenus: [],
-        phenomenes: []
+        contenusComment: "",
+        phenomenes: [],
+        phenomenesComment: "",
+        answerTime: null,
+    }
 
+    const initValues = {
+        localisation: initLocalisation,
+        localisationComment: initLocalisationComment,
+        determinant: initDeterminant,
+        determinantComment: initDeterminantComment,
+        determinantSign:initDeterminantSign,
+        contenus: initContenus,
+        contenusComment: initContenusComment,
+        phenomenes: initPhenomenes,
+        phenomenesComment: initPhenomenesComment,
+        answerTime: 0,
     }
 
     
@@ -31,13 +54,18 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
             <h2 className="lg:text-3xl text-center font-light mt-6 lg:mt-12 border-b">Planche no.{idNumber}</h2>
             {idNumber && <div className="my-12 lg:my-24"><Image className="rounded-lg" src={`/images/rorschach${idNumber}.jpg`} width={366*2} height={206*2} /></div>}
             <Formik
-                initialValues={{localisation: initLocalisation, determinant: initDeterminant, determinantSign:initDeterminantSign, contenus: initContenus, phenomenes: initPhenomenes}}
+                initialValues={initValues}
                 validationSchema={Yup.object({
                     localisation: Yup.string().oneOf([...localisationList, ""], "Localisation incorrecte").required('Required'),
+                    localisationComment: Yup.string(),
                     determinant: Yup.string().oneOf([...determinantList, ""], "Déterminant incorrect").required('Required'),
+                    determinantComment: Yup.string(),
                     determinantSign: Yup.string().oneOf([...signesList, ""], "Signe incorrect").required('Required'),
                     contenus: Yup.array().required('Required'),
-                    phenomenes: Yup.array()
+                    contenusComment: Yup.string(),
+                    phenomenes: Yup.array(),
+                    phenomenesComment: Yup.string(),
+                    answerTime: Yup.number().min(0, 'Must be positive'),
                 })}
                 onSubmit={(values, {setSubmitting }) => {
                     savePlanche(values, idNumber);
@@ -56,6 +84,8 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
                             <FormikSelect label="Localisation" name='localisation'>
                                 {localisationList.map(localisation => <option key={localisation+idNumber} value={localisation}>{localisation}</option>)}
                             </FormikSelect>
+
+                            <FormikTextArea label="Localisation : Commentaires" name="localisationComment"/>
 
                             <FormikSelect label="Déterminant" name="determinant">
                                 {determinantList.map(det => <option key={det+idNumber} value={det}>{det}</option>)}
