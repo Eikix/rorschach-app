@@ -7,6 +7,8 @@ import FormikCheckbox from "./myFormikComponents/FormikCheckbox";
 import RefusButton from "./RefusButton";
 import ReinitializeButton from "./ReinitializeButton";
 import FormikTextArea from "./myFormikComponents/FormikTextArea";
+import FormikTextInput from "./myFormikComponents/FormikTextInput";
+import { useState } from "react";
 
 const Planche = ({idNumber, savePlanche, savedPlanches}) => {
 
@@ -47,6 +49,9 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
         answerTime: 0,
     }
 
+    const [inputRows, setInputRows] = useState(1);
+    const [inputCols, setInputCols] = useState(20);
+
     
 
     return (
@@ -80,43 +85,52 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
                 <div className="mb-6 lg:mb-12">
                     <Form className="flex flex-col items-center justify-center md:justify-start ">
                         <div className="flex flex-col space-y-6 lg:space-y-0 lg:flex-row lg:space-x-12 xl:space-x-12 items-start mb-6 lg:mb-12">
-                            <div className="flex flex-col items-start justify-center space-y-4 lg:space-y-8 rounded-lg border shadow-md lg:p-6 p-3">
+                            <div className="flex flex-col items-start justify-center space-y-4 lg:space-y-8 rounded-lg border shadow-sm lg:p-6 p-3">
                             <FormikSelect label="Localisation" name='localisation'>
                                 {localisationList.map(localisation => <option key={localisation+idNumber} value={localisation}>{localisation}</option>)}
                             </FormikSelect>
 
-                            <FormikTextArea label="Localisation : Commentaires" name="localisationComment"/>
+                            <FormikTextArea label="Commentaires" name="localisationComment" rows={inputRows} cols={inputCols}/>
 
                             <FormikSelect label="Déterminant" name="determinant">
                                 {determinantList.map(det => <option key={det+idNumber} value={det}>{det}</option>)}
                             </FormikSelect>
 
+                            <FormikTextArea label="Commentaires" name="determinantComment" rows={inputRows} cols={inputCols}/>
+
                             <FormikSelect label="Signe" name="determinantSign">
                                 {signesList.map(sign => <option key={sign+idNumber} value={sign}>{sign}</option>)}
                             </FormikSelect>
+
                             </div>
 
                             <div className="flex flex-col space-y-4 lg:space-y-8">
-                                <div className="flex flex-col rounded-lg border shadow-md lg:p-6 p-3">
+                                <div className="flex flex-col rounded-lg border shadow-sm lg:p-6 p-3">
                                     <h3 className="md:text-xl md:mb-3">Contenus: </h3>
-                                    <div className="grid grid-flow-row grid-cols-3 md:grid-cols-4 lg:grid-cols-9 lg:gap-3 gap-2">
+                                    <div className="grid grid-flow-row grid-cols-3 md:grid-cols-4 lg:grid-cols-9 lg:gap-3 gap-2 mb-3 md:mb-4 lg:mb-6">
                                         {contenusList.map(contenu => {
                                             return (
                                                 <FormikCheckbox key={contenu+idNumber} name="contenus" value={contenu}> {contenu} </FormikCheckbox>
                                             )
                                         })}
                                     </div>
+                                    <FormikTextArea label="Commentaires" name="contenusComment" rows={inputRows} cols={inputCols}/>
                                 </div>
 
-                                <div className="flex flex-col border shadow-md lg:p-6 p-3">
+                                <div className="flex flex-col border shadow-sm rounded-lg lg:p-6 p-3">
                                     <h3 className="md:text-xl md:mb-3">Phénomènes Particuliers: </h3>
-                                    <div className="grid grid-flow-row grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-3 gap-2">
+                                    <div className="grid grid-flow-row grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-3 gap-2 mb-3 md:mb-4 lg:mb-6">
                                         {phenomenesList.map(phenomene => {
                                             return (
                                                 <FormikCheckbox key={phenomene+idNumber} name="phenomenes" value={phenomene}> {phenomene} </FormikCheckbox>
                                             )
                                         })}
                                     </div>
+                                    <FormikTextArea label="Commentaires" name="phenomenesComment" rows={inputRows} cols={inputCols}/>
+                                </div>
+                                
+                                <div className="flex flex-col">
+                                    <FormikTextInput label="Temps de réponse (secondes)" name="answerTime" type="number" />
                                 </div>
                             </div>
                             <div className="flex flex-col space-y-4 lg:space-y-8">
@@ -125,7 +139,7 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
                                 
                             </div>
                         </div>
-                        <button className="text-xl text-color1 p-3 rounded-lg hover:bg-gray-100 w-1/8 border shadow-md lg:p-6 p-3 mx-4 lg:mx-0" type="submit">Sauvegarder et passer à la planche suivante</button>
+                        <button className="text-xl text-color1 p-3 rounded-lg hover:bg-gray-100 w-1/8 border shadow-sm lg:p-6 p-3 mx-4 lg:mx-0" type="submit">Sauvegarder et passer à la planche suivante</button>
 
                     </Form>
                 </div>
