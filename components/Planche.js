@@ -22,10 +22,10 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
             <Formik
                 initialValues={{localisation: initLocalisation, determinant: initDeterminant, determinantSign:initDeterminantSign, contenus: initContenus, phenomenes: initPhenomenes}}
                 validationSchema={Yup.object({
-                    localisation: Yup.string().oneOf([...localisationList, ""], "Localisation incorrecte"),
-                    determinant: Yup.string().oneOf([...determinantList, ""], "Déterminant incorrect"),
-                    determinantSign: Yup.string().oneOf([...signesList, ""], "Signe incorrect"),
-                    contenus: Yup.array(),
+                    localisation: Yup.string().oneOf([...localisationList, ""], "Localisation incorrecte").required('Required'),
+                    determinant: Yup.string().oneOf([...determinantList, ""], "Déterminant incorrect").required('Required'),
+                    determinantSign: Yup.string().oneOf([...signesList, ""], "Signe incorrect").required('Required'),
+                    contenus: Yup.array().required('Required'),
                     phenomenes: Yup.array()
                 })}
                 onSubmit={(values, {setSubmitting }) => {
