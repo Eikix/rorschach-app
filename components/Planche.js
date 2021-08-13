@@ -49,7 +49,7 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
         answerTime: 0,
     }
 
-    const [inputRows, setInputRows] = useState(1);
+    const [inputRows, setInputRows] = useState(3);
     const [inputCols, setInputCols] = useState(20);
 
     
@@ -106,8 +106,8 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
 
                             <div className="flex flex-col space-y-4 lg:space-y-8">
                                 <div className="flex flex-col rounded-lg border shadow-sm lg:p-6 p-3">
-                                    <h3 className="md:text-xl md:mb-3">Contenus: </h3>
-                                    <div className="grid grid-flow-row grid-cols-3 md:grid-cols-4 lg:grid-cols-9 lg:gap-3 gap-2 mb-3 md:mb-4 lg:mb-6">
+                                    <h3 className="md:text-xl mb-2 md:mb-3 border-b pb-1 lg:mb-6 xl:mb-8">Contenus: </h3>
+                                    <div className="grid grid-flow-row grid-cols-3 md:grid-cols-4 lg:grid-cols-10 lg:gap-4 xl:gap-6 gap-2 mb-3 md:mb-4 lg:mb-6 justify-center items-center p-2 lg:p-4 xl:p-6">
                                         {contenusList.map(contenu => {
                                             return (
                                                 <FormikCheckbox key={contenu+idNumber} name="contenus" value={contenu}> {contenu} </FormikCheckbox>
@@ -118,8 +118,8 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
                                 </div>
 
                                 <div className="flex flex-col border shadow-sm rounded-lg lg:p-6 p-3">
-                                    <h3 className="md:text-xl md:mb-3">Phénomènes Particuliers: </h3>
-                                    <div className="grid grid-flow-row grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-3 gap-2 mb-3 md:mb-4 lg:mb-6">
+                                    <h3 className="md:text-xl mb-2 md:mb-3 lg:mb-6 xl:mb-8 border-b pb-1">Phénomènes Particuliers: </h3>
+                                    <div className="grid grid-flow-row grid-cols-2 md:grid-cols-4 lg:grid-cols-10 lg:gap-4 xl:gap-6 gap-2 mb-3 md:mb-4 lg:mb-6 justify-center items-center p-2 lg:p-4 xl:p-6">
                                         {phenomenesList.map(phenomene => {
                                             return (
                                                 <FormikCheckbox key={phenomene+idNumber} name="phenomenes" value={phenomene}> {phenomene} </FormikCheckbox>
