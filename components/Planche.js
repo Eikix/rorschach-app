@@ -13,24 +13,24 @@ import { useState } from "react";
 const Planche = ({idNumber, savePlanche, savedPlanches}) => {
 
     const initLocalisation = savedPlanches[idNumber]?.localisation ?? '';
-    const initLocalisationComment = savedPlanches[idNumber]?.localisationComment ?? '';
+    // const initLocalisationComment = savedPlanches[idNumber]?.localisationComment ?? '';
     const initDeterminant = savedPlanches[idNumber]?.determinant ?? '';
-    const initDeterminantComment = savedPlanches[idNumber]?.determinantComment ?? '';
+    //  const initDeterminantComment = savedPlanches[idNumber]?.determinantComment ?? '';
     const initDeterminantSign = savedPlanches[idNumber]?.determinantSign ?? '';
     const initContenus = savedPlanches[idNumber]?.contenus ?? [];
-    const initContenusComment = savedPlanches[idNumber]?.contenusComment ?? '';
+    // const initContenusComment = savedPlanches[idNumber]?.contenusComment ?? '';
     const initPhenomenes = savedPlanches[idNumber]?.phenomenes ?? [];
     const initPhenomenesComment = savedPlanches[idNumber]?.phenomenesComment ?? '';
 
 
     const emptyPlanche = {
         localisation: "",
-        localisationComment: "",
+        // localisationComment: "",
         determinant: "",
-        determinantComment: "",
+        // determinantComment: "",
         determinantSign: "",
         contenus: [],
-        contenusComment: "",
+        // contenusComment: "",
         phenomenes: [],
         phenomenesComment: "",
         answerTime: null,
@@ -38,12 +38,12 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
 
     const initValues = {
         localisation: initLocalisation,
-        localisationComment: initLocalisationComment,
+        // localisationComment: initLocalisationComment,
         determinant: initDeterminant,
-        determinantComment: initDeterminantComment,
+        // determinantComment: initDeterminantComment,
         determinantSign:initDeterminantSign,
         contenus: initContenus,
-        contenusComment: initContenusComment,
+        // contenusComment: initContenusComment,
         phenomenes: initPhenomenes,
         phenomenesComment: initPhenomenesComment,
         answerTime: 0,
@@ -62,12 +62,12 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
                 initialValues={initValues}
                 validationSchema={Yup.object({
                     localisation: Yup.string().oneOf([...localisationList, ""], "Localisation incorrecte").required('Required'),
-                    localisationComment: Yup.string(),
+                    // localisationComment: Yup.string(),
                     determinant: Yup.string().oneOf([...determinantList, ""], "Déterminant incorrect").required('Required'),
-                    determinantComment: Yup.string(),
+                    // determinantComment: Yup.string(),
                     determinantSign: Yup.string().oneOf([...signesList, ""], "Signe incorrect").required('Required'),
                     contenus: Yup.array().required('Required'),
-                    contenusComment: Yup.string(),
+                    // contenusComment: Yup.string(),
                     phenomenes: Yup.array(),
                     phenomenesComment: Yup.string(),
                     answerTime: Yup.number().min(0, 'Must be positive'),
@@ -90,13 +90,13 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
                                 {localisationList.map(localisation => <option key={localisation+idNumber} value={localisation}>{localisation}</option>)}
                             </FormikSelect>
 
-                            <FormikTextArea label="Commentaires" name="localisationComment" rows={inputRows} cols={inputCols}/>
+                            {/* <FormikTextArea label="Commentaires" name="localisationComment" rows={inputRows} cols={inputCols}/> */}
 
                             <FormikSelect label="Déterminant" name="determinant">
                                 {determinantList.map(det => <option key={det+idNumber} value={det}>{det}</option>)}
                             </FormikSelect>
 
-                            <FormikTextArea label="Commentaires" name="determinantComment" rows={inputRows} cols={inputCols}/>
+                            {/* <FormikTextArea label="Commentaires" name="determinantComment" rows={inputRows} cols={inputCols}/> */}
 
                             <FormikSelect label="Signe" name="determinantSign">
                                 {signesList.map(sign => <option key={sign+idNumber} value={sign}>{sign}</option>)}
@@ -114,7 +114,7 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
                                             )
                                         })}
                                     </div>
-                                    <FormikTextArea label="Commentaires" name="contenusComment" rows={inputRows} cols={inputCols}/>
+                                    {/* <FormikTextArea label="Commentaires" name="contenusComment" rows={inputRows} cols={inputCols}/> */}
                                 </div>
 
                                 <div className="flex flex-col border shadow-sm rounded-lg lg:p-6 p-3">
