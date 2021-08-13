@@ -11,7 +11,7 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
     return (
         <div className="flex flex-col justify-center items-center">
             <h2 className="lg:text-3xl text-center font-light mt-6 lg:mt-12 border-b">Planche no.{idNumber}</h2>
-            {idNumber && <div className="my-12 lg:my-24"><Image src={`/images/rorschach${idNumber}.jpg`} width={366*2} height={206*2} /></div>}
+            {idNumber && <div className="my-12 lg:my-24"><Image className="rounded-lg" src={`/images/rorschach${idNumber}.jpg`} width={366*2} height={206*2} /></div>}
             <Formik
                 initialValues={{localisation: savedPlanches[idNumber]?.localisation, determinant: savedPlanches[idNumber]?.determinant, determinantSign:savedPlanches[idNumber]?.determinantSign, contenus: savedPlanches[idNumber]?.contenus, phenomenes: savedPlanches[idNumber]?.phenomenes}}
                 validationSchema={Yup.object({
