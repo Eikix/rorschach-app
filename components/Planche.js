@@ -5,6 +5,7 @@ import FormikSelect from "./FormikSelect";
 import {localisationList, determinantList, signesList, contenusList, phenomenesList} from '../utils/details/plancheDetails';
 import FormikCheckbox from "./FormikCheckbox";
 import RefusButton from "./RefusButton";
+import ReinitializeButton from "./ReinitializeButton";
 
 const Planche = ({idNumber, savePlanche, savedPlanches}) => {
     const initLocalisation = savedPlanches[idNumber]?.localisation ?? '';
@@ -12,6 +13,16 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
     const initDeterminantSign = savedPlanches[idNumber]?.determinantSign ?? '';
     const initContenus = savedPlanches[idNumber]?.contenus ?? [];
     const initPhenomenes = savedPlanches[idNumber]?.phenomenes ?? [];
+
+
+    const emptyPlanche = {
+        localisation: "",
+        determinant: "",
+        determinantSign: "",
+        contenus: [],
+        phenomenes: []
+
+    }
 
     
 
@@ -30,8 +41,11 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
                 })}
                 onSubmit={(values, {setSubmitting }) => {
                     savePlanche(values, idNumber);
-                    alert(JSON.stringify(values, null, 2));
+                    console.log(JSON.stringify(values, null, 2));
                     setSubmitting(false);
+                }}
+                onReset={() => {
+                    savePlanche(emptyPlanche, idNumber, false);
                 }}
                     
             >
@@ -77,7 +91,7 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
                             </div>
                             <div className="flex flex-col space-y-4 lg:space-y-8">
                                 <RefusButton />
-                                <button className="text-xl text-color1 p-3 rounded-lg hover:bg-gray-100 w-1/8 border shadow-md lg:p-6 p-3 mx-4 lg:mx-0" type="reset">Réinitialiser</button>
+                                <ReinitializeButton />
                                 
                             </div>
                         </div>

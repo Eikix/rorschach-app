@@ -61,7 +61,7 @@ const RorschachTest = () => {
     }
 
     const submitResults = () => {
-        alert(JSON.stringify(savedPlanches, null, 2));
+        console.log(JSON.stringify(savedPlanches, null, 2));
     }
 
     const nextPlanche = () => {
@@ -75,7 +75,7 @@ const RorschachTest = () => {
         }
     }
 
-    const savePlanche = (values, idNumber) => {
+    const savePlanche = (values, idNumber, goNextPlanche = true) => {
         try {
             setSavedPlanches(prevPlanches => {
                 return ({
@@ -84,7 +84,7 @@ const RorschachTest = () => {
                 })
             })
             console.log(savedPlanches);
-            nextPlanche();
+            if (goNextPlanche) nextPlanche();
         } catch(err) {
             console.log(err);
         }
