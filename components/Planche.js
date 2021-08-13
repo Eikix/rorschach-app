@@ -4,22 +4,29 @@ import Image from "next/image";
 import FormikSelect from "./FormikSelect";
 import {localisationList, determinantList, signesList, contenusList, phenomenesList} from '../utils/details/plancheDetails';
 import FormikCheckbox from "./FormikCheckbox";
+import RefusButton from "./RefusButton";
 
 const Planche = ({idNumber, savePlanche, savedPlanches}) => {
+    const initLocalisation = savedPlanches[idNumber]?.localisation ?? '';
+    const initDeterminant = savedPlanches[idNumber]?.determinant ?? '';
+    const initDeterminantSign = savedPlanches[idNumber]?.determinantSign ?? '';
+    const initContenus = savedPlanches[idNumber]?.contenus ?? [];
+    const initPhenomenes = savedPlanches[idNumber]?.phenomenes ?? [];
 
+    
 
     return (
         <div className="flex flex-col justify-center items-center">
             <h2 className="lg:text-3xl text-center font-light mt-6 lg:mt-12 border-b">Planche no.{idNumber}</h2>
             {idNumber && <div className="my-12 lg:my-24"><Image className="rounded-lg" src={`/images/rorschach${idNumber}.jpg`} width={366*2} height={206*2} /></div>}
             <Formik
-                initialValues={{localisation: savedPlanches[idNumber]?.localisation, determinant: savedPlanches[idNumber]?.determinant, determinantSign:savedPlanches[idNumber]?.determinantSign, contenus: savedPlanches[idNumber]?.contenus, phenomenes: savedPlanches[idNumber]?.phenomenes}}
+                initialValues={{localisation: initLocalisation, determinant: initDeterminant, determinantSign:initDeterminantSign, contenus: initContenus, phenomenes: initPhenomenes}}
                 validationSchema={Yup.object({
-                    localisation: Yup.string().required('Required'),
-                    determinant: Yup.string().required('Required'),
-                    determinantSign: Yup.string().required('Required'),
-                    contenus: Yup.array().required('Required'),
-                    phenomenes: Yup.array().required('Required')
+                    localisation: Yup.string().oneOf([...localisationList, ""], "Localisation incorrecte"),
+                    determinant: Yup.string().oneOf([...determinantList, ""], "Déterminant incorrect"),
+                    determinantSign: Yup.string().oneOf([...signesList, ""], "Signe incorrect"),
+                    contenus: Yup.array(),
+                    phenomenes: Yup.array()
                 })}
                 onSubmit={(values, {setSubmitting }) => {
                     savePlanche(values, idNumber);
@@ -68,6 +75,7 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
                                     </div>
                                 </div>
                             </div>
+                            <RefusButton />
                         </div>
                         <button className="text-xl text-color1 p-3 rounded-lg hover:bg-gray-100 w-1/8 border shadow-md lg:p-6 p-3 mx-4 lg:mx-0" type="submit">Sauvegarder et passer à la planche suivante</button>
 

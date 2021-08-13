@@ -7,7 +7,7 @@ const RorschachTest = () => {
     const [savedPlanches, setSavedPlanches] = useState({});
 
     const submitResults = () => {
-        alert(JSON.stringify(savedPlanches));
+        alert(JSON.stringify(savedPlanches, null, 2));
     }
 
     const nextPlanche = () => {
