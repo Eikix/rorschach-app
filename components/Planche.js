@@ -75,7 +75,11 @@ const Planche = ({idNumber, savePlanche, savedPlanches}) => {
                                     </div>
                                 </div>
                             </div>
-                            <RefusButton />
+                            <div className="flex flex-col space-y-4 lg:space-y-8">
+                                <RefusButton />
+                                <button className="text-xl text-color1 p-3 rounded-lg hover:bg-gray-100 w-1/8 border shadow-md lg:p-6 p-3 mx-4 lg:mx-0" type="reset">Réinitialiser</button>
+                                
+                            </div>
                         </div>
                         <button className="text-xl text-color1 p-3 rounded-lg hover:bg-gray-100 w-1/8 border shadow-md lg:p-6 p-3 mx-4 lg:mx-0" type="submit">Sauvegarder et passer à la planche suivante</button>
 
