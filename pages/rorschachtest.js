@@ -3,8 +3,71 @@ import Planche from "../components/Planche";
 import { useState } from "react";
 
 const RorschachTest = () => {
+
+    const [resultNumber, setResultNumber] = useState("first");
+
+    const resultsArray = ["first", "second", "third"];
+    const planchesArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    const updateResultNumber = (nextResultNumber) => {
+        setResultNumber(nextResultNumber);
+    }
+
+    const blankPlanches = {
+        "1":{
+            "first":{},
+            "second":{},
+            "third":{},
+        },
+        "2":{
+            "first":{},
+            "second":{},
+            "third":{},
+        },
+        "3":{
+            "first":{},
+            "second":{},
+            "third":{},
+        },
+        "4":{
+            "first":{},
+            "second":{},
+            "third":{},
+        },
+        "5":{
+            "first":{},
+            "second":{},
+            "third":{},
+        },
+        "6":{
+            "first":{},
+            "second":{},
+            "third":{},
+        },
+        "7":{
+            "first":{},
+            "second":{},
+            "third":{},
+        },
+        "8":{
+            "first":{},
+            "second":{},
+            "third":{},
+        },
+        "9":{
+            "first":{},
+            "second":{},
+            "third":{},
+        },
+        "10":{
+            "first":{},
+            "second":{},
+            "third":{},
+        }
+        };
+        
     const [selectedPlanche, setSelectedPlanche] = useState(1);
-    const [savedPlanches, setSavedPlanches] = useState({});
+    const [savedPlanches, setSavedPlanches] = useState(blankPlanches);
 
     const isActive = {
         one: selectedPlanche === 1 ? "bg-color1" : "bg-gray-100",
@@ -67,43 +130,58 @@ const RorschachTest = () => {
     const nextPlanche = () => {
         if (selectedPlanche < 11) {
             setSelectedPlanche(prevPlanche => prevPlanche + 1);
+            setResultNumber("first");
         }
     }
     const previousPlanche = () => {
         if (selectedPlanche > 1) {
             setSelectedPlanche(prevPlanche => prevPlanche - 1);
+            setResultNumber("first");
         }
     }
 
-    const savePlanche = (values, idNumber, goNextPlanche = true) => {
+    const savePlanche = (values, plancheNumber, resultNumber, goNextPlanche = true, goNextResult = false) => {
         try {
             setSavedPlanches(prevPlanches => {
                 return ({
                     ...prevPlanches,
-                    [idNumber]: values
+                    [plancheNumber]: {
+                        ...prevPlanches[plancheNumber],
+                        [resultNumber] : values
+                    }
                 })
             })
-            console.log(savedPlanches);
             if (goNextPlanche) nextPlanche();
+            if (goNextResult) {
+                switch(resultNumber) {
+                    case "first": 
+                        updateResultNumber("second");
+                        break;
+                    case "second":
+                        updateResultNumber("third");
+                        break;
+                }
+            }
         } catch(err) {
             console.log(err);
         }
+        console.log(savedPlanches);
     }
 
 
     return (
         <Layout title='Rorschach Test' description="Faites passer un test de Rorschach en ligne.">
             <div className="flex flex-col items-center justify-center mb-12">
-                {selectedPlanche===1 && <Planche idNumber="1" savePlanche={savePlanche} savedPlanches={savedPlanches}/>}
-                {selectedPlanche===2 && <Planche idNumber="2" savePlanche={savePlanche} savedPlanches={savedPlanches}/>}
-                {selectedPlanche===3 && <Planche idNumber="3" savePlanche={savePlanche} savedPlanches={savedPlanches}/>}
-                {selectedPlanche===4 && <Planche idNumber="4" savePlanche={savePlanche} savedPlanches={savedPlanches}/>}
-                {selectedPlanche===5 && <Planche idNumber="5" savePlanche={savePlanche} savedPlanches={savedPlanches}/>}
-                {selectedPlanche===6 && <Planche idNumber="6" savePlanche={savePlanche} savedPlanches={savedPlanches}/>}
-                {selectedPlanche===7 && <Planche idNumber="7" savePlanche={savePlanche} savedPlanches={savedPlanches}/>}
-                {selectedPlanche===8 && <Planche idNumber="8" savePlanche={savePlanche} savedPlanches={savedPlanches}/>}
-                {selectedPlanche===9 && <Planche idNumber="9" savePlanche={savePlanche} savedPlanches={savedPlanches}/>}
-                {selectedPlanche===10 && <Planche idNumber="10" savePlanche={savePlanche} savedPlanches={savedPlanches}/>}
+
+                {planchesArray.map(plancheNumber => {
+                    return (
+                    resultsArray.map(result => {
+                        if (selectedPlanche === plancheNumber && resultNumber === result) return (
+                            <Planche key={plancheNumber.toString()+result} plancheNumber={plancheNumber} savePlanche={savePlanche} savedPlanches={savedPlanches} resultNumber={result} updateResultNumber={updateResultNumber}/>
+                        )
+                    }))
+                })}
+                
                 {selectedPlanche===11 && 
                     <div className="flex flex-col justify-center items-center shadow-sm rounded-lg text-color1 p-3 lg:p-24 m-12 lg:m-18">
                         <p className="text-2xl lg:text-3xl">Vous avez terminé le test de Rorschach. Vous pouvez désormais générer les résultats.</p>
