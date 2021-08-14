@@ -7,6 +7,8 @@ import RorschachForm from "./myFormikComponents/RorschachForm";
 
 const Planche = ({plancheNumber, savePlanche, savedPlanches, resultNumber, updateResultNumber}) => {
 
+    const resultNumberPresented = resultNumber === "first" ? "1" : (resultNumber === "second" ? "2" : "3");
+
 
     const nextResultNumber = () => {
         switch(resultNumber) {
@@ -52,8 +54,9 @@ const Planche = ({plancheNumber, savePlanche, savedPlanches, resultNumber, updat
 
     return (
         <div className="flex flex-col justify-center items-center">
-            <h2 className="lg:text-3xl text-center font-light mt-6 lg:mt-12 border-b">Planche no.{plancheNumber}</h2>
-            {plancheNumber && <div className="my-12 lg:my-24 mx-2 lg:mx-0"><Image className="rounded-lg" src={`/images/rorschach${plancheNumber}.jpg`} width={366*2} height={206*2} /></div>}
+            <h2 className="lg:text-3xl text-center font-light mt-6 lg:mt-12 border-b">Planche n°{plancheNumber}</h2>
+            {plancheNumber && <div className="mt-12 lg:mt-24 mx-2 lg:mx-0"><Image className="rounded-lg" src={`/images/rorschach${plancheNumber}.jpg`} width={366*2} height={206*2} /></div>}
+            <h3 className="lg:text-3xl text-center font-light my-4 md:my-6 lg:my-12 border-b">Interprétation n°{resultNumberPresented}</h3>
             <RorschachForm plancheNumber={plancheNumber} savePlanche={savePlanche}  initValues={initValues} resultNumber={resultNumber} nextResultNumber={nextResultNumber} switchResultWithinSamePlanche={switchResultWithinSamePlanche}/>
         </div>
     )
