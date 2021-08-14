@@ -13,7 +13,7 @@ function Nav() {
         <nav className="flex flex-col sm:flex-row justify-around items-center font-light border-b">
             <Link href="/">
                 <div className="hover:text-mediumblue flex flex-col sm:flex-row sm:px-12 cursor-pointer transform space-x-6">
-                    <h1 className="text-3xl font-normal text-color2 text-center lg:text-left m-4 sm:m-0" > <a>Rorschach</a> </h1>
+                    <h1 className="text-3xl font-normal text-color1 text-center lg:text-left m-4 sm:m-0" > <a>Rorschach</a> </h1>
                 </div>
             </Link>
             
