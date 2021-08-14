@@ -39,16 +39,16 @@ const Planche = ({plancheNumber, savePlanche, savedPlanches, resultNumber, updat
     }
 
     const [initValues, setInitValues] = useState({
-        localisation: savedPlanches[plancheNumber][resultNumber]?.localisation ?? '',
+        localisation: savedPlanches.planches[plancheNumber][resultNumber]?.localisation ?? '',
         // localisationComment: initLocalisationComment,
-        determinant: savedPlanches[plancheNumber][resultNumber]?.determinant ?? '',
+        determinant: savedPlanches.planches[plancheNumber][resultNumber]?.determinant ?? '',
         // determinantComment: initDeterminantComment,
-        determinantSign: savedPlanches[plancheNumber][resultNumber]?.determinantSign ?? '',
-        contenus: savedPlanches[plancheNumber][resultNumber]?.contenus ?? [],
+        determinantSign: savedPlanches.planches[plancheNumber][resultNumber]?.determinantSign ?? '',
+        contenus: savedPlanches.planches[plancheNumber][resultNumber]?.contenus ?? [],
         // contenusComment: initContenusComment,
-        phenomenes: savedPlanches[plancheNumber][resultNumber]?.phenomenes ?? [],
-        phenomenesComment: savedPlanches[plancheNumber][resultNumber]?.phenomenesComment ?? '',
-        answerTime: savedPlanches[plancheNumber][resultNumber]?.answerTime ?? 0,
+        phenomenes: savedPlanches.planches[plancheNumber][resultNumber]?.phenomenes ?? [],
+        phenomenesComment: savedPlanches.planches[plancheNumber][resultNumber]?.phenomenesComment ?? '',
+        answerTime: savedPlanches.planches[plancheNumber][resultNumber]?.answerTime ?? 0,
     });
     
 

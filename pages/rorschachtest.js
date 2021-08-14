@@ -1,6 +1,7 @@
 import Layout from "../components/Layout";
 import Planche from "../components/Planche";
 import { useState } from "react";
+import PreferenceForm from "../components/myFormikComponents/PreferenceForm";
 
 const RorschachTest = () => {
 
@@ -14,55 +15,57 @@ const RorschachTest = () => {
     }
 
     const blankPlanches = {
-        "1":{
-            "first":{},
-            "second":{},
-            "third":{},
-        },
-        "2":{
-            "first":{},
-            "second":{},
-            "third":{},
-        },
-        "3":{
-            "first":{},
-            "second":{},
-            "third":{},
-        },
-        "4":{
-            "first":{},
-            "second":{},
-            "third":{},
-        },
-        "5":{
-            "first":{},
-            "second":{},
-            "third":{},
-        },
-        "6":{
-            "first":{},
-            "second":{},
-            "third":{},
-        },
-        "7":{
-            "first":{},
-            "second":{},
-            "third":{},
-        },
-        "8":{
-            "first":{},
-            "second":{},
-            "third":{},
-        },
-        "9":{
-            "first":{},
-            "second":{},
-            "third":{},
-        },
-        "10":{
-            "first":{},
-            "second":{},
-            "third":{},
+        planches : {
+            "1":{
+                "first":{},
+                "second":{},
+                "third":{},
+            },
+            "2":{
+                "first":{},
+                "second":{},
+                "third":{},
+            },
+            "3":{
+                "first":{},
+                "second":{},
+                "third":{},
+            },
+            "4":{
+                "first":{},
+                "second":{},
+                "third":{},
+            },
+            "5":{
+                "first":{},
+                "second":{},
+                "third":{},
+            },
+            "6":{
+                "first":{},
+                "second":{},
+                "third":{},
+            },
+            "7":{
+                "first":{},
+                "second":{},
+                "third":{},
+            },
+            "8":{
+                "first":{},
+                "second":{},
+                "third":{},
+            },
+            "9":{
+                "first":{},
+                "second":{},
+                "third":{},
+            },
+            "10":{
+                "first":{},
+                "second":{},
+                "third":{},
+            }
         }
         };
         
@@ -145,9 +148,11 @@ const RorschachTest = () => {
             setSavedPlanches(prevPlanches => {
                 return ({
                     ...prevPlanches,
-                    [plancheNumber]: {
-                        ...prevPlanches[plancheNumber],
-                        [resultNumber] : values
+                    planches: {
+                        [plancheNumber]: {
+                            ...prevPlanches[planche][plancheNumber],
+                            [resultNumber] : values
+                        }
                     }
                 })
             })
@@ -168,6 +173,19 @@ const RorschachTest = () => {
         console.log(savedPlanches);
     }
 
+    const savePrefs = (prefs) => {
+        try {
+            setSavedPlanches(prevPlanches => {
+                return {
+                    ...prevPlanches,
+                    preferences: prefs,
+                }
+            })
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
 
     return (
         <Layout title='Rorschach Test' description="Faites passer un test de Rorschach en ligne.">
@@ -184,8 +202,10 @@ const RorschachTest = () => {
 
                 {selectedPlanche===11 && 
                     <div className="flex flex-col justify-center items-center shadow-sm rounded-lg text-color1 p-3 lg:p-24 m-12 lg:m-18">
-                        <p className="text-2xl lg:text-3xl">Vous avez terminé le test de Rorschach. Vous pouvez désormais générer les résultats.</p>
-                        <button onClick={submitResults} className="text-xl lg:text-2xl rounded-lg p-6 border shadow-sm text-center text-color1 mt-12 lg:mt-32">Générer</button>
+                        <p className="text-2xl text-center lg:text-3xl mb-12 lg:mb-16">Entrez les 2 planches préférées et les 2 planches les moins appréciées par le patient (Optionnel).</p>
+                        <PreferenceForm savePrefs={savePrefs} />
+                        <p className="text-2xl text-center lg:text-3xl mb-6 mt-12 md:mt-16 lg:mt-24 xl:mt-32">Vous avez terminé le test de Rorschach. Vous pouvez désormais générer les résultats.</p>
+                        <button onClick={submitResults} className="text-xl lg:text-2xl rounded-lg p-6 border shadow-sm text-center text-color1 mt-12 hover:bg-gray-100">Générer</button>
                     </div>
                 }
                 <div className="flex justify-around items-center w-full">
