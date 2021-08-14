@@ -43,7 +43,7 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
     }
 
     return (
-        <>
+        <div>
             <Formik
                 initialValues={initValues}
                 validationSchema={Yup.object({
@@ -144,7 +144,7 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
             </Formik>
             
             
-        </>
+        </div>
     )
 }
 

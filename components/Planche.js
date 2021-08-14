@@ -53,7 +53,7 @@ const Planche = ({plancheNumber, savePlanche, savedPlanches, resultNumber, updat
     return (
         <div className="flex flex-col justify-center items-center">
             <h2 className="lg:text-3xl text-center font-light mt-6 lg:mt-12 border-b">Planche no.{plancheNumber}</h2>
-            {plancheNumber && <div className="my-12 lg:my-24"><Image className="rounded-lg" src={`/images/rorschach${plancheNumber}.jpg`} width={366*2} height={206*2} /></div>}
+            {plancheNumber && <div className="my-12 lg:my-24 mx-2 lg:mx-0"><Image className="rounded-lg" src={`/images/rorschach${plancheNumber}.jpg`} width={366*2} height={206*2} /></div>}
             <RorschachForm plancheNumber={plancheNumber} savePlanche={savePlanche}  initValues={initValues} resultNumber={resultNumber} nextResultNumber={nextResultNumber} switchResultWithinSamePlanche={switchResultWithinSamePlanche}/>
         </div>
     )
