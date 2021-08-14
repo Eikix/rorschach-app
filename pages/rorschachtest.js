@@ -149,8 +149,9 @@ const RorschachTest = () => {
                 return ({
                     ...prevPlanches,
                     planches: {
+                        ...prevPlanches.planches,
                         [plancheNumber]: {
-                            ...prevPlanches[planche][plancheNumber],
+                            ...prevPlanches.planches[plancheNumber],
                             [resultNumber] : values
                         }
                     }
@@ -195,7 +196,7 @@ const RorschachTest = () => {
                     return (
                     resultsArray.map(result => {
                         if (selectedPlanche === plancheNumber && resultNumber === result) return (
-                            <Planche key={plancheNumber.toString()+result} plancheNumber={plancheNumber} savePlanche={savePlanche} savedPlanches={savedPlanches} resultNumber={result} updateResultNumber={updateResultNumber}/>
+                            <Planche key={plancheNumber.toString()+result} plancheNumber={plancheNumber.toString()} savePlanche={savePlanche} savedPlanches={savedPlanches} resultNumber={result} updateResultNumber={updateResultNumber}/>
                         )
                     }))
                 })}
