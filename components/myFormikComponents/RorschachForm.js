@@ -70,8 +70,8 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
             >
                 <div className="mb-6 lg:mb-12">
                     <Form className="flex flex-col items-center justify-center md:justify-start ">
-                        <div className="flex flex-col space-y-6 lg:space-y-0 lg:flex-row lg:space-x-12 xl:space-x-12 items-start mb-6 lg:mb-12">
-                            <div className="flex flex-col items-start justify-center space-y-4 lg:space-y-8 rounded-lg border shadow-sm lg:p-6 p-3">
+                        <div className="flex flex-col space-y-6 lg:space-y-0 lg:flex-row lg:space-x-10 xl:space-x-12 lg:items-start mb-6 lg:mb-12">
+                            <div className="flex flex-col lg:items-start justify-center space-y-4 lg:space-y-8 rounded-lg border shadow-sm lg:p-6 p-3">
                             <FormikSelect label="Localisation" name='localisation'>
                                 {localisationList.map(localisation => <option key={localisation+plancheNumber} value={localisation}>{localisation}</option>)}
                             </FormikSelect>

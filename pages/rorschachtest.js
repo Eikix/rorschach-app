@@ -181,7 +181,7 @@ const RorschachTest = () => {
                         )
                     }))
                 })}
-                
+
                 {selectedPlanche===11 && 
                     <div className="flex flex-col justify-center items-center shadow-sm rounded-lg text-color1 p-3 lg:p-24 m-12 lg:m-18">
                         <p className="text-2xl lg:text-3xl">Vous avez terminé le test de Rorschach. Vous pouvez désormais générer les résultats.</p>
