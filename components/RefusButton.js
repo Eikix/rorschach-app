@@ -3,17 +3,18 @@ import { useFormikContext } from "formik";
 const RefusButton = () => {
 
     const {
-        values: {localisation, determinant, determinantSign, contenus},
+        values: {localisation, determinant, determinantSign, contenus, phenomenes},
         touched,
         setFieldValue
     } = useFormikContext();
 
     
     const handleRefus = () => {
-        setFieldValue("localisation", "Refus");
-        setFieldValue("determinant", "Refus");
-        setFieldValue("determinantSign", "Refus");
-        setFieldValue("contenus", ["Refus"]);
+        setFieldValue("localisation", "Aucun");
+        setFieldValue("determinant", "Aucun");
+        setFieldValue("determinantSign", "Aucun");
+        setFieldValue("contenus", []);
+        setFieldValue("phenomenes", ["Refus"]);
     }
 
 

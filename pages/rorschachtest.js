@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import Planche from "../components/Planche";
 import { useState } from "react";
 import PreferenceForm from "../components/myFormikComponents/PreferenceForm";
+import processResults from "../utils/helpers/processResults";
 
 const RorschachTest = () => {
 
@@ -128,6 +129,7 @@ const RorschachTest = () => {
 
     const submitResults = () => {
         console.log(JSON.stringify(savedPlanches, null, 2));
+        processResults(savedPlanches);
     }
 
     const nextPlanche = () => {
