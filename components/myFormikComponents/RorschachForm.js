@@ -105,12 +105,14 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
                                             return (
                                                 <div
                                                     onMouseEnter={() => {
-                                                        setContentHoverActive(true);
+                                                        setTimeout(() => setContentHoverActive(true), 500);
                                                         setHoverContent(contentHoverInformation[contenu]);
                                                     }}
                                                     onMouseLeave={() => {
-                                                        setContentHoverActive(false);
-                                                        setHoverContent("");
+                                                        setTimeout(() => {
+                                                            setContentHoverActive(false)
+                                                            setHoverContent("");
+                                                        }, 500);
                                                     }}
                                                     key={contenu+plancheNumber}
                                                 >

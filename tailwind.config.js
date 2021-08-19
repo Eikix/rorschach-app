@@ -16,6 +16,21 @@ module.exports = {
         'color5': '#93aef0',
         'color6': '#aebde2',
       },
+      keyframes: {
+        fadeIn : {
+          'from': {
+            opacity: '0',
+            transform: 'scale(0)'
+          },
+          'to': {
+            opacity: '100',
+            transform: 'scale(1)'
+          }
+        }
+      },
+      animation: {
+        fadeIn: 'fadeIn 0.5s ease-in-out'
+      }
     },
   },
   variants: {
