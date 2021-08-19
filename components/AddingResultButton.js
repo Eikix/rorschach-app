@@ -19,7 +19,7 @@ const AddingResultButton = ({savePlanche, resultNumber, plancheNumber}) => {
 
 
     return (
-        <div className="text-xl text-center text-color1 p-3 cursor-pointer rounded-lg hover:bg-gray-100 w-1/8 border shadow-md lg:p-6 p-3 mx-4 lg:mx-0" type="reset" onClick={handleAddResult}>Ajouter une perception</div>
+        <div className="text-xl text-center text-color1 p-3 cursor-pointer rounded-lg hover:bg-gray-100 w-1/8 border shadow-sm lg:p-6 p-3 mx-4 lg:mx-0" type="reset" onClick={handleAddResult}>Ajouter une perception</div>
     )
 
 }

@@ -8,7 +8,7 @@
    const [field, meta] = useField({ ...props, type: 'checkbox' });
    return (
      <div className="flex flex-col">
-       <label className="checkbox-input">
+       <label className="checkbox-input xl:z-50">
          <input type="checkbox" {...field} {...props} />
          {children}
        </label>

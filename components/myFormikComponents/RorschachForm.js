@@ -1,6 +1,8 @@
 import AddingResultButton from "../AddingResultButton";
 import FormikSelect from "./FormikSelect";
 import {localisationList, determinantList, signesList, contenusList, phenomenesList} from '../../utils/details/plancheDetails';
+import * as contentHoverInformation from "../../utils/details/contentHoverInformation";
+import * as phenoHoverInformation from "../../utils/details/phenomeneHoverInformation";
 import FormikCheckbox from "./FormikCheckbox";
 import RefusButton from "../RefusButton";
 import ReinitializeButton from "../ReinitializeButton";
@@ -9,10 +11,15 @@ import FormikTextInput from "./FormikTextInput";
 import { Formik, Form } from "formik";
 import * as Yup from 'yup';
 import { useState } from "react";
+import HoverInfo from "../HoverInfo";
 
 
 const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , switchResultWithinSamePlanche}) => {
 
+    const [isContentHoverActive, setContentHoverActive] = useState(false);
+    const [hoverContent, setHoverContent] = useState("");
+    const [isPhenoHoverActive, setPhenoHoverActive] = useState(false);
+    const [hoverPheno, setHoverPheno] = useState("");
 
     const isActive = {
         first: resultNumber === "first" ? "bg-color1" : "bg-gray-100",
@@ -93,10 +100,23 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
                             <div className="flex flex-col space-y-4 lg:space-y-8">
                                 <div className="flex flex-col rounded-lg border shadow-sm lg:p-6 p-3">
                                     <h3 className="md:text-xl mb-2 md:mb-3 border-b pb-1 lg:mb-6 xl:mb-8">Contenus: </h3>
+                                    <HoverInfo content={hoverContent} visible={isContentHoverActive}/>
                                     <div className="grid grid-flow-row grid-cols-3 md:grid-cols-4 lg:grid-cols-10 lg:gap-4 xl:gap-6 gap-2 mb-3 md:mb-4 lg:mb-6 justify-center items-center p-2 lg:p-4 xl:p-6">
                                         {contenusList.map(contenu => {
                                             return (
-                                                <FormikCheckbox key={contenu+plancheNumber} name="contenus" value={contenu}> {contenu} </FormikCheckbox>
+                                                <div
+                                                    onMouseEnter={ () => {
+                                                        setContentHoverActive(true);
+                                                        setHoverContent(contentHoverInformation[contenu]);
+                                                    }}
+                                                    onMouseLeave={ () => {
+                                                        setContentHoverActive(false);
+                                                        setHoverContent("");
+                                                    }}
+                                                    key={contenu+plancheNumber}
+                                                >
+                                                <FormikCheckbox name="contenus" value={contenu}> {contenu} </FormikCheckbox>
+                                                </div>
                                             )
                                         })}
                                     </div>
@@ -105,10 +125,23 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
 
                                 <div className="flex flex-col border shadow-sm rounded-lg lg:p-6 p-3">
                                     <h3 className="md:text-xl mb-2 md:mb-3 lg:mb-6 xl:mb-8 border-b pb-1">Phénomènes Particuliers: </h3>
-                                    <div className="grid grid-flow-row grid-cols-2 md:grid-cols-4 lg:grid-cols-9 2xl:grid-cols-10 lg:gap-4 xl:gap-6 gap-2 mb-3 md:mb-4 lg:mb-6 justify-center items-center p-2 lg:p-4 xl:p-6">
+                                    <HoverInfo content={hoverPheno} visible={isPhenoHoverActive}/>
+                                    <div className="grid grid-flow-row grid-cols-2 md:grid-cols-4 lg:grid-cols-9 2xl:grid-cols-9 lg:gap-4 xl:gap-6 gap-2 mb-3 md:mb-4 lg:mb-6 justify-center items-center p-2 lg:p-4 xl:p-6">
                                         {phenomenesList.map(phenomene => {
                                             return (
-                                                <FormikCheckbox key={phenomene+plancheNumber} name="phenomenes" value={phenomene}> {phenomene} </FormikCheckbox>
+                                                <div
+                                                    onMouseEnter={() => {
+                                                        setPhenoHoverActive(true);
+                                                        setHoverPheno(phenoHoverInformation[phenomene]);
+                                                    }}
+                                                    onMouseLeave={() => {
+                                                        setPhenoHoverActive(false);
+                                                        setHoverPheno("");
+                                                    }}
+                                                    key={phenomene+plancheNumber} 
+                                                >
+                                                    <FormikCheckbox name="phenomenes" value={phenomene}> {phenomene} </FormikCheckbox>
+                                                </div>
                                             )
                                         })}
                                     </div>

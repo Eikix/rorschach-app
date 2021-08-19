@@ -36,36 +36,19 @@ const processResults = (results) => {
     let DoLocs = 0;
     let DiLocs = 0;
 
-    // Determinant counting //
+    /* Determinant counting
+    
+    Determinants are one of ["F", "K", "Kst", "K rép", "K ref", "kan", "kan st", "kan rép", "kan ref", "kob", "kp", "kp stat", "FC", "CF","C", "Cn", `C'`, "KC", "kan C", "kob C", "Kp C", "FE", "EF", "E", "F clob", "Clob F", "Clob", "Aucun"]
 
-    let detFPlus;
-    let detCPlus;
-    let detEPlus;
-    let detClobPlus;
-    let detKPlus;
-    let detKanPlus;
-    let detKobPlus;
-    let detKpPlus;
+    We'll want to identify: 
+        - answer starting in F, C, E, K, kan, kob, kp and Clob.
+        - answers with an associated sign (+, -, +/-).
+        - Type de résonnance intime (TRI) : no. of K's / (C answers points (0.5, 1.0, or 1.5 depending on the det))
+        - Fcompl formula : no. of k's / (E answers points (0.5, 1.0, or 1.5 depending on the det))
 
     
-    let detFMinus;
-    let detCMinus;
-    let detEMinus;
-    let detClobMinus;
-    let detKMinus;
-    let detKanMinus;
-    let detKobMinus;
-    let detKpMinus;
+    */
 
-    
-    let detFPlusMinus;
-    let detCPlusMinus;
-    let detEPlusMinus;
-    let detClobPlusMinus;
-    let detKPlusMinus;
-    let detKanPlusMinus;
-    let detKobPlusMinus;
-    let detKpPlusMinus;
 
     // Contenus //
 
@@ -146,6 +129,21 @@ const processResults = (results) => {
             }
         })
         return contentCountMapping;
+    }
+
+    const countDet = (detArray) => {
+        const possibleDets = ["F", "K", "Kst", "K rép", "K ref", "kan", "kan st", "kan rép", "kan ref", "kob", "kp", "kp stat", "FC", "CF","C", "Cn", `C'`, "KC", "kan C", "kob C", "Kp C", "FE", "EF", "E", "F clob", "Clob F", "Clob", "Aucun"];
+        const FDets = ["F", "FC", "FE", "F clob"];
+        const KDets = ["K", "Kst", "K rép", "K ref", "KC", "Kp C"];
+        const kanDets = ["kan", "kan st", "kan rép", "kan ref", "kan C"];
+        const kobDets = ["kob", "kob C"];
+        const kpDets = ["kp", "kp stats"];
+        const CDets = ["CF", "C", "Cn", "C'" ];
+        const ClobDets = ["Clob F", "Clob"];
+        const EDets = ["EF", "E"];
+
+        
+
     }
 
     countResults(results);
