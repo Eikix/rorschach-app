@@ -111,7 +111,7 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
                                                 }}
                                 >
                                     <h3 className="md:text-xl mb-2 md:mb-3 border-b pb-1 lg:mb-6 xl:mb-8">Contenus: </h3>
-                                    <div className="grid grid-flow-row grid-cols-4 xl:grid-cols-5 lg:gap-4 xl:gap-6 gap-2 mb-3 md:mb-4 lg:mb-6 justify-center items-center p-2 lg:p-4 xl:p-6">
+                                    <div className="grid grid-flow-row grid-cols-3 md:grid-cols-4 xl:grid-cols-5 lg:gap-4 xl:gap-6 gap-2 mb-3 md:mb-4 lg:mb-6 justify-center items-center p-2 lg:p-4 xl:p-6">
                                         {contenusList.map(contenu => {
                                             return (
                                                 <div
