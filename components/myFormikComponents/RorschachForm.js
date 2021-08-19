@@ -20,6 +20,8 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
     const [hoverContent, setHoverContent] = useState("");
     const [isPhenoHoverActive, setPhenoHoverActive] = useState(false);
     const [hoverPheno, setHoverPheno] = useState("");
+    let contentTimeout;
+    let phenoTimeout;
 
     const isActive = {
         first: resultNumber === "first" ? "bg-color1" : "bg-gray-100",
@@ -98,21 +100,27 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
                             </div>
 
                             <div className="flex flex-col space-y-4 lg:space-y-8">
-                                <div className="flex flex-col rounded-lg border shadow-sm lg:p-6 p-3">
+                                <div 
+                                    className="flex flex-col rounded-lg border shadow-sm lg:p-6 p-3"
+                                    onMouseLeave={() => {
+                                                    setTimeout(() => {
+                                                        setContentHoverActive(false)
+                                                        setHoverContent("");
+                                                    }, 50);
+                                                }}
+                                >
                                     <h3 className="md:text-xl mb-2 md:mb-3 border-b pb-1 lg:mb-6 xl:mb-8">Contenus: </h3>
                                     <div className="grid grid-flow-row grid-cols-4 xl:grid-cols-5 lg:gap-4 xl:gap-6 gap-2 mb-3 md:mb-4 lg:mb-6 justify-center items-center p-2 lg:p-4 xl:p-6">
                                         {contenusList.map(contenu => {
                                             return (
                                                 <div
                                                     onMouseEnter={() => {
-                                                        setTimeout(() => setContentHoverActive(true), 500);
-                                                        setHoverContent(contentHoverInformation[contenu]);
-                                                    }}
-                                                    onMouseLeave={() => {
-                                                        setTimeout(() => {
-                                                            setContentHoverActive(false)
-                                                            setHoverContent("");
+                                                        if (contentTimeout) clearTimeout(contentTimeout);
+                                                        contentTimeout = setTimeout(() => {
+                                                            setHoverContent(contentHoverInformation[contenu]);
+                                                            setContentHoverActive(true);
                                                         }, 500);
+                                                        
                                                     }}
                                                     key={contenu+plancheNumber}
                                                 >
@@ -125,20 +133,29 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
                                     {/* <FormikTextArea label="Commentaires" name="contenusComment" rows={inputRows} cols={inputCols}/> */}
                                 </div>
 
-                                <div className="flex flex-col border shadow-sm rounded-lg lg:p-6 p-3">
+                                <div
+                                    className="flex flex-col border shadow-sm rounded-lg lg:p-6 p-3"
+                                    onMouseLeave={() => {
+                                                        setTimeout(() => {
+                                                            setPhenoHoverActive(false);
+                                                            setHoverPheno("");
+                                                        }, 50)
+                                                        
+                                                    }}
+                                >
                                     <h3 className="md:text-xl mb-2 md:mb-3 lg:mb-6 xl:mb-8 border-b pb-1">Phénomènes Particuliers: </h3>
                                     <div className="grid grid-flow-row grid-cols-3 2xl:grid-cols-6 lg:gap-4 xl:gap-6 gap-2 mb-3 md:mb-4 lg:mb-6 justify-center items-center p-2 lg:p-4 xl:p-6">
                                         {phenomenesList.map(phenomene => {
                                             return (
                                                 <div
                                                     onMouseEnter={() => {
-                                                        setPhenoHoverActive(true);
-                                                        setHoverPheno(phenoHoverInformation[phenomene]);
+                                                        if(phenoTimeout) clearTimeout(phenoTimeout)
+                                                        phenoTimeout = setTimeout(() => {
+                                                            setHoverPheno(phenoHoverInformation[phenomene]);
+                                                            setPhenoHoverActive(true);
+                                                        }, 500);
                                                     }}
-                                                    onMouseLeave={() => {
-                                                        setPhenoHoverActive(false);
-                                                        setHoverPheno("");
-                                                    }}
+                                                    
                                                     key={phenomene+plancheNumber} 
                                                 >
                                                     <FormikCheckbox name="phenomenes" value={phenomene}> {phenomene} </FormikCheckbox>
