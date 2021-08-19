@@ -17,7 +17,7 @@ function Nav() {
                 </div>
             </Link>
             
-            <div className="flex overflow-x-auto max-w-full text-color2 justify-around  px-6 md:px-3 pt-5 pb-2 space-x-4 md:space-x-12">
+            <div className="flex max-w-full text-color2 justify-around  px-4 md:px-6 pt-5 pb-2 space-x-2 sm:space-x-5 md:space-x-12">
                 <Link href="/">
                     <a><NavItem title="Home" Icon={HomeIcon}/></a>
                 </Link>

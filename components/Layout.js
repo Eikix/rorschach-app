@@ -7,7 +7,7 @@ const Layout = ({children, title, description}) => {
         <div>
             <CustomHead title={title} description={description} />
             <Header/>
-                <main className="px-3 sm:px-4 md:px-5">
+                <main>
                     {children}
                 </main>
             <Footer />

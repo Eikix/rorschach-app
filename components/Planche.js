@@ -53,7 +53,7 @@ const Planche = ({plancheNumber, savePlanche, savedPlanches, resultNumber, updat
     
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center px-3 sm:px-4 md:px-5">
             <h2 className="lg:text-3xl text-center font-light mt-6 lg:mt-12 border-b">Planche n°{plancheNumber}</h2>
             {plancheNumber && <div className="mt-12 lg:mt-24 mx-2 lg:mx-0"><Image className="rounded-lg" src={`/images/rorschach${plancheNumber}.jpg`} width={366*2} height={206*2} /></div>}
             <h3 className="lg:text-3xl text-center self-auto font-light my-4 md:my-6 lg:my-12 border-b">Perception n°{resultNumberPresented}</h3>
