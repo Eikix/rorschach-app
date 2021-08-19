@@ -16,9 +16,6 @@ module.exports = {
         'color5': '#93aef0',
         'color6': '#aebde2',
       },
-      zIndex: {
-         '-10': '-10',
-        },
     },
   },
   variants: {

@@ -100,16 +100,15 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
                             <div className="flex flex-col space-y-4 lg:space-y-8">
                                 <div className="flex flex-col rounded-lg border shadow-sm lg:p-6 p-3">
                                     <h3 className="md:text-xl mb-2 md:mb-3 border-b pb-1 lg:mb-6 xl:mb-8">Contenus: </h3>
-                                    <HoverInfo content={hoverContent} visible={isContentHoverActive}/>
-                                    <div className="grid grid-flow-row grid-cols-3 md:grid-cols-4 lg:grid-cols-10 lg:gap-4 xl:gap-6 gap-2 mb-3 md:mb-4 lg:mb-6 justify-center items-center p-2 lg:p-4 xl:p-6">
+                                    <div className="grid grid-flow-row grid-cols-4 xl:grid-cols-5 lg:gap-4 xl:gap-6 gap-2 mb-3 md:mb-4 lg:mb-6 justify-center items-center p-2 lg:p-4 xl:p-6">
                                         {contenusList.map(contenu => {
                                             return (
                                                 <div
-                                                    onMouseEnter={ () => {
+                                                    onMouseEnter={() => {
                                                         setContentHoverActive(true);
                                                         setHoverContent(contentHoverInformation[contenu]);
                                                     }}
-                                                    onMouseLeave={ () => {
+                                                    onMouseLeave={() => {
                                                         setContentHoverActive(false);
                                                         setHoverContent("");
                                                     }}
@@ -120,13 +119,13 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
                                             )
                                         })}
                                     </div>
+                                    {isContentHoverActive && <HoverInfo content={hoverContent} visible={isContentHoverActive}/>}
                                     {/* <FormikTextArea label="Commentaires" name="contenusComment" rows={inputRows} cols={inputCols}/> */}
                                 </div>
 
                                 <div className="flex flex-col border shadow-sm rounded-lg lg:p-6 p-3">
                                     <h3 className="md:text-xl mb-2 md:mb-3 lg:mb-6 xl:mb-8 border-b pb-1">Phénomènes Particuliers: </h3>
-                                    <HoverInfo content={hoverPheno} visible={isPhenoHoverActive}/>
-                                    <div className="grid grid-flow-row grid-cols-2 md:grid-cols-4 lg:grid-cols-9 2xl:grid-cols-9 lg:gap-4 xl:gap-6 gap-2 mb-3 md:mb-4 lg:mb-6 justify-center items-center p-2 lg:p-4 xl:p-6">
+                                    <div className="grid grid-flow-row grid-cols-3 2xl:grid-cols-6 lg:gap-4 xl:gap-6 gap-2 mb-3 md:mb-4 lg:mb-6 justify-center items-center p-2 lg:p-4 xl:p-6">
                                         {phenomenesList.map(phenomene => {
                                             return (
                                                 <div
@@ -145,6 +144,7 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
                                             )
                                         })}
                                     </div>
+                                    {isPhenoHoverActive && <HoverInfo content={hoverPheno} visible={isPhenoHoverActive}/>}
                                     <FormikTextArea label="Commentaires" name="phenomenesComment" rows={inputRows} cols={inputCols}/>
                                 </div>
                                 

@@ -1,6 +1,6 @@
-const HoverInfo = ({content, visible}) => {
+const HoverInfo = ({content}) => {
     return (
-        <div className={`max-w-sm md:max-w-md lg:max-w-xl xl:max-w-4xl absolute self-center font-light shadow-sm bg-blue-50 p-2 md:p-3 lg:p-4 rounded-lg text-lg lg:text-xl ${visible ? '' : 'hidden -z-10'}`}>
+        <div className={`max-w-xs md:max-w-xs lg:max-w-md xl:max-w-lg self-center font-light shadow-sm bg-blue-50 p-3 md:p-3 lg:p-4 rounded-lg text-lg lg:text-xl mb-12`}>
             <p>{content}</p>
         </div>
     )
