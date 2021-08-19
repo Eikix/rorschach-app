@@ -1,8 +1,8 @@
 const Footer = () => {
     return (
-        <footer className="">
+        <footer className="max-w-full">
             <hr />
-            <ul className="flex flex-row text-xs md:text-base justify-around my-6 mx-3">
+            <ul className="flex text-xs md:text-base justify-around my-6 mx-3">
                 <li>
                     Design et conception par <a className="hover:text-color6" href="https://www.linkedin.com/in/florence-damien-a47ba116b/">Florence Damien</a>
                 </li>
