@@ -103,6 +103,7 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
                                 <div 
                                     className="flex flex-col rounded-lg border shadow-sm lg:p-6 p-3"
                                     onMouseLeave={() => {
+                                                    if (contentTimeout) clearTimeout(contentTimeout);
                                                     setTimeout(() => {
                                                         setContentHoverActive(false)
                                                         setHoverContent("");
@@ -136,6 +137,7 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
                                 <div
                                     className="flex flex-col border shadow-sm rounded-lg lg:p-6 p-3"
                                     onMouseLeave={() => {
+                                                        if(phenoTimeout) clearTimeout(phenoTimeout);
                                                         setTimeout(() => {
                                                             setPhenoHoverActive(false);
                                                             setHoverPheno("");
