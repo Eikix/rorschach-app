@@ -39,11 +39,11 @@ const Planche = ({plancheNumber, savePlanche, savedPlanches, resultNumber, updat
     }
 
     const [initValues, setInitValues] = useState({
-        localisation: savedPlanches.planches[plancheNumber][resultNumber]?.localisation ?? '',
+        localisation: savedPlanches.planches[plancheNumber][resultNumber]?.localisation ?? 'Aucun',
         // localisationComment: initLocalisationComment,
-        determinant: savedPlanches.planches[plancheNumber][resultNumber]?.determinant ?? '',
+        determinant: savedPlanches.planches[plancheNumber][resultNumber]?.determinant ?? 'Aucun',
         // determinantComment: initDeterminantComment,
-        determinantSign: savedPlanches.planches[plancheNumber][resultNumber]?.determinantSign ?? '',
+        determinantSign: savedPlanches.planches[plancheNumber][resultNumber]?.determinantSign ?? 'Aucun',
         contenus: savedPlanches.planches[plancheNumber][resultNumber]?.contenus ?? [],
         // contenusComment: initContenusComment,
         phenomenes: savedPlanches.planches[plancheNumber][resultNumber]?.phenomenes ?? [],

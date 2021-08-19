@@ -68,7 +68,10 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
                     answerTime: Yup.number().min(0, 'Must be positive'),
                 })}
                 onSubmit={(values, {setSubmitting }) => {
-                    savePlanche(values, plancheNumber, resultNumber, true, false);
+                    const res = {...values};
+                    res.determinant = {value: values.determinant, sign: values.determinantSign};
+                    delete res.determinantSign;
+                    savePlanche(res, plancheNumber, resultNumber, true, false);
                     console.log(JSON.stringify(values, null, 2));
                     setSubmitting(false);
                 }}

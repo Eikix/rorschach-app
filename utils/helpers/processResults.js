@@ -3,10 +3,10 @@ import { contenusList } from "../details/plancheDetails";
 const processResults = (results) => {
 
     // Major categories Arrays creation
+    const colorPlanches = ["2", "3", "8", "9", "10"];
 
     const locArray = [];
     const detArray = [];
-    const signArray = [];
     let contentArray = [];
     let phenoArray = [];
     const answerTimeArray = [];
@@ -15,7 +15,7 @@ const processResults = (results) => {
     // General test attributes to count : //
 
     let totalResponses = 0;
-    let colorPlancheResponses = 0;
+    let coloredResponses = 0;
     let bans = 0;
     let refusals = 0;
     let prefs = [];
@@ -62,10 +62,10 @@ const processResults = (results) => {
             const plancheIds = Object.keys(planches[plancheNb]);
             plancheIds.map(id => {
                 if (Object.keys(planches[plancheNb][id]).length !== 0) {
+                    if (colorPlanches.includes(plancheNb)) coloredResponses++;
                     totalResponses++;
                     locArray.push(planches[plancheNb][id]?.localisation);
                     detArray.push(planches[plancheNb][id]?.determinant);
-                    signArray.push(planches[plancheNb][id]?.determinantSign);
                     if (planches[plancheNb][id].contenus) {
                         contentArray = [...contentArray, ...planches[plancheNb][id].contenus];
                     }
@@ -73,7 +73,7 @@ const processResults = (results) => {
                         phenoArray = [...phenoArray, ...planches[plancheNb][id].phenomenes];
                     }
                     if (planches[plancheNb][id].answerTime) {
-                        answerTimeArray = answerTimeArray.push(planches[plancheNb][id].answerTime);
+                        answerTimeArray.push(planches[plancheNb][id].answerTime);
                     }
                 }
             })
@@ -118,6 +118,10 @@ const processResults = (results) => {
         });
     }
 
+    const countAvgTimePerPlanche = () => {
+        return (totalAnswerTime / (totalResponses - refusals))
+    }
+
     const countContent = (contentArray) => {
         const contentCountMapping = {}
         if (contentArray) contentArray.map(content => {
@@ -132,7 +136,7 @@ const processResults = (results) => {
     }
 
     const countDet = (detArray) => {
-        const possibleDets = ["F", "K", "Kst", "K rép", "K ref", "kan", "kan st", "kan rép", "kan ref", "kob", "kp", "kp stat", "FC", "CF","C", "Cn", `C'`, "KC", "kan C", "kob C", "Kp C", "FE", "EF", "E", "F clob", "Clob F", "Clob", "Aucun"];
+        const possibleDets = ["F", "K", "Kst", "K rép", "K ref", "kan", "kan st", "kan rép", "kan ref", "kob", "kp", "kp stat", "FC", "CF","C", "Cn", `C'`, "KC", "kan C", "kob C", "Kp C", "FE", "EF", "E", "F clob", "Clob F", "Clob"];
         const FDets = ["F", "FC", "FE", "F clob"];
         const KDets = ["K", "Kst", "K rép", "K ref", "KC", "Kp C"];
         const kanDets = ["kan", "kan st", "kan rép", "kan ref", "kan C"];
@@ -141,9 +145,54 @@ const processResults = (results) => {
         const CDets = ["CF", "C", "Cn", "C'" ];
         const ClobDets = ["Clob F", "Clob"];
         const EDets = ["EF", "E"];
-
         
-
+        const detCountMapping = {
+            FCount: 0,
+            KCount: 0,
+            kanCount: 0,
+            kobCount: 0,
+            kpCount: 0,
+            CCount: 0,
+            clobCount:0,
+            ECount: 0
+        };
+        if (detArray) detArray.map(det => {
+            if (possibleDets.includes(det.value) && !detCountMapping.hasOwnProperty(det.value)) {
+                detCountMapping[det.value] = {
+                    totalCount: 0,
+                    pluses: 0,
+                    minuses: 0,
+                    plusminuses: 0,
+                    unsigneds: 0,
+                }
+            }
+            if (possibleDets.includes(det.value) && detCountMapping.hasOwnProperty(det.value)) {
+                detCountMapping[det.value].totalCount++;
+                switch(det.sign) {
+                    case "( + )":
+                        detCountMapping[det.value].pluses++;
+                        break;
+                    case "( - )":
+                        detCountMapping[det.value].minuses++;
+                        break;
+                    case "( +/- )":
+                        detCountMapping[det.value].plusminuses++;
+                        break;
+                    case "Aucun":
+                        detCountMapping[det.value].unsigneds++;
+                        break;
+                }
+            }
+            if (FDets.includes(det.value)) detCountMapping.FCount++;
+            if (KDets.includes(det.value)) detCountMapping.KCount++;
+            if (kpDets.includes(det.value)) detCountMapping.kpCount++;
+            if (kanDets.includes(det.value)) detCountMapping.kanCount++;
+            if (kobDets.includes(det.value)) detCountMapping.kobCount++;
+            if (CDets.includes(det.value)) detCountMapping.CCount++;
+            if (ClobDets.includes(det.value)) detCountMapping.clobCount++;
+            if (EDets.includes(det.value)) detCountMapping.ECount++;
+        })
+        return detCountMapping;
     }
 
     countResults(results);
@@ -152,7 +201,27 @@ const processResults = (results) => {
     countRefusals(phenoArray);
     countTotalTime(answerTimeArray);
     const contentCountMapping = countContent(contentArray);
-    console.log(totalResponses, locArray, detArray, signArray, contentArray, phenoArray, answerTimeArray, totalDLocs, bans, refusals, contentCountMapping);
+    const locCountMapping = {
+        totalGLocs,
+        totalDLocs,
+        totalDdLocs,
+        totalDoDiLocs,
+        DoLocs,
+        DiLocs,
+    }
+    const avgTimePerPlanche = countAvgTimePerPlanche();
+    const detCountMapping = countDet(detArray);
+
+    return {
+        totalResponses, 
+        coloredResponses,
+        locCountMapping,
+        bans, 
+        refusals, 
+        contentCountMapping, 
+        detCountMapping,
+        avgTimePerPlanche,
+    }
     
 }
 

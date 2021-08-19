@@ -3,6 +3,7 @@ import Planche from "../components/Planche";
 import { useState } from "react";
 import PreferenceForm from "../components/myFormikComponents/PreferenceForm";
 import processResults from "../utils/helpers/processResults";
+import computeResults from "../utils/helpers/computation";
 
 const RorschachTest = () => {
 
@@ -72,6 +73,7 @@ const RorschachTest = () => {
         
     const [selectedPlanche, setSelectedPlanche] = useState(1);
     const [savedPlanches, setSavedPlanches] = useState(blankPlanches);
+    const [finalResults, setFinalResults] = useState({});
 
     const isActive = {
         one: selectedPlanche === 1 ? "bg-color1" : "bg-gray-100",
@@ -129,7 +131,9 @@ const RorschachTest = () => {
 
     const submitResults = () => {
         console.log(JSON.stringify(savedPlanches, null, 2));
-        processResults(savedPlanches);
+        setFinalResults(() => processResults(savedPlanches));
+        console.log(JSON.stringify(finalResults, null, 2));
+        // console.log(computeResults(finalResults));
     }
 
     const nextPlanche = () => {
