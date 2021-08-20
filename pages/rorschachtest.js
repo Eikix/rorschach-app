@@ -3,7 +3,7 @@ import Planche from "../components/Planche";
 import { useState } from "react";
 import PreferenceForm from "../components/myFormikComponents/PreferenceForm";
 import processResults from "../utils/helpers/processResults";
-import computeResults from "../utils/helpers/computation";
+import computeResults from "../utils/helpers/computeProcessedResults";
 
 const RorschachTest = () => {
 
@@ -133,7 +133,12 @@ const RorschachTest = () => {
         console.log(JSON.stringify(savedPlanches, null, 2));
         setFinalResults(() => processResults(savedPlanches));
         console.log(JSON.stringify(finalResults, null, 2));
-        // console.log(computeResults(finalResults));
+    }
+
+    const printResults = () => {
+        if (Object.keys(finalResults).length !== 0) {
+            console.log(JSON.stringify(computeResults(finalResults), null, 2));
+        }
     }
 
     const nextPlanche = () => {
@@ -213,6 +218,7 @@ const RorschachTest = () => {
                         <PreferenceForm savePrefs={savePrefs} />
                         <p className="text-2xl text-center lg:text-3xl mb-6 mt-12 md:mt-16 lg:mt-24 xl:mt-32">Vous avez terminé le test de Rorschach. Vous pouvez désormais générer les résultats.</p>
                         <button onClick={submitResults} className="text-xl lg:text-2xl rounded-lg p-6 border shadow-sm text-center text-color1 mt-12 hover:bg-gray-100">Générer</button>
+                        {(Object.keys(finalResults).length !== 0) && <button onClick={printResults} className="text-xl lg:text-2xl rounded-lg p-6 border shadow-sm text-center text-color1 mt-12 hover:bg-gray-100">Voir les résultats</button>}
                     </div>
                 }
                 <div className="flex justify-around items-center w-full">

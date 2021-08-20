@@ -71,8 +71,8 @@ const RorschachForm = ({plancheNumber, savePlanche, initValues, resultNumber , s
                     const res = {...values};
                     res.determinant = {value: values.determinant, sign: values.determinantSign};
                     delete res.determinantSign;
-                    savePlanche(res, plancheNumber, resultNumber, true, false);
                     console.log(JSON.stringify(values, null, 2));
+                    savePlanche(res, plancheNumber, resultNumber, true, false);
                     setSubmitting(false);
                 }}
                 onReset={() => {

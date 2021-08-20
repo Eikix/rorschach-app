@@ -9,9 +9,9 @@ const ReinitializeButton = () => {
 
     
     const handleReinit = () => {
-        setFieldValue("localisation", "");
-        setFieldValue("determinant", "");
-        setFieldValue("determinantSign", "");
+        setFieldValue("localisation", "Aucun");
+        setFieldValue("determinant", "Aucun");
+        setFieldValue("determinantSign", "Aucun");
         setFieldValue("contenus", []);
         setFieldValue("phenomenes", []);
         setFieldValue("phenomenesComment", "");

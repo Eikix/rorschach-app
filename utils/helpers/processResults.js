@@ -24,10 +24,6 @@ const processResults = (results) => {
 
     // Localisation counting // 
 
-    const GLocsArray = ["G", "G barré", "Gbl", "Gconf", "Gcont"];
-    const DLocsArray = ["D", "Dbl D", "D Dbl", "Dbl"];
-    const DdLocsArray = ["Dd", "Dd Dbl", "Ddbl"];
-
 
     let totalGLocs = 0;
     let totalDLocs = 0;
@@ -35,6 +31,7 @@ const processResults = (results) => {
     let totalDoDiLocs = 0;
     let DoLocs = 0;
     let DiLocs = 0;
+    let DblLocs = 0;
 
     /* Determinant counting
     
@@ -84,6 +81,10 @@ const processResults = (results) => {
     }
 
     const countLocs = (locArray) => {
+        const GLocsArray = ["G", "G barré", "Gbl", "Gconf", "Gcont"];
+        const DLocsArray = ["D", "Dbl D", "D Dbl", "Dbl"];
+        const DdLocsArray = ["Dd", "Dd Dbl", "Ddbl"];
+        const DblLocsArray = ["Dbl D", "D Dbl", "Dbl", "Dd Dbl"];
         locArray.map(loc => {
             if (GLocsArray.includes(loc)) totalGLocs++;
             if (DLocsArray.includes(loc)) totalDLocs++;
@@ -96,6 +97,7 @@ const processResults = (results) => {
                 DiLocs++;
                 totalDoDiLocs++;
             }
+            if (DblLocsArray.includes(loc)) DblLocs++;
 
         })
     }
@@ -208,6 +210,7 @@ const processResults = (results) => {
         totalDoDiLocs,
         DoLocs,
         DiLocs,
+        DblLocs,
     }
     const avgTimePerPlanche = countAvgTimePerPlanche();
     const detCountMapping = countDet(detArray);
