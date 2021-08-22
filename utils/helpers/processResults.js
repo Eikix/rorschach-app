@@ -59,8 +59,8 @@ const processResults = (results) => {
             const plancheIds = Object.keys(planches[plancheNb]);
             plancheIds.map(id => {
                 if (Object.keys(planches[plancheNb][id]).length !== 0) {
-                    if (colorPlanches.includes(plancheNb)) coloredResponses++;
-                    totalResponses++;
+                    if (colorPlanches.includes(plancheNb) && !planches[plancheNb][id].phenomenes.includes("Refus")) coloredResponses++;
+                    if (!planches[plancheNb][id].phenomenes.includes("Refus")) totalResponses++;
                     locArray.push(planches[plancheNb][id]?.localisation);
                     detArray.push(planches[plancheNb][id]?.determinant);
                     if (planches[plancheNb][id].contenus) {
