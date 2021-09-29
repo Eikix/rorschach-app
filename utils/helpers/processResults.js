@@ -2,7 +2,7 @@ import { contenusList } from '../details/plancheDetails';
 
 const processResults = results => {
     // Major categories Arrays creation
-    const colorPlanches = ['2', '3', '8', '9', '10'];
+    const colorPlanches = ['8', '9', '10'];
 
     const locArray = [];
     const detArray = [];

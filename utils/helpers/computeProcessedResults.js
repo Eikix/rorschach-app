@@ -115,7 +115,9 @@ const computeProcessedResults = results => {
     const computeFcompl = () => {};
 
     const computeFPct = (dets, totalRes) => {
-        return Math.round((dets['FCount'] * 100) / totalRes) + '%';
+        if (dets.hasOwnProperty('F')) {
+            return Math.round((dets['F'].totalCount * 100) / totalRes) + '%';
+        }
     };
 
     const computeFPlusPct = dets => {
@@ -129,11 +131,60 @@ const computeProcessedResults = results => {
         }
     };
 
-    const computeFMinusPct = () => {};
+    const computeFLargePct = (dets, totalRes) => {
+        const f = dets.hasOwnProperty('F') ? dets['F'].totalCount : 0;
+        const k = dets.hasOwnProperty('K') ? dets['K'].totalCount : 0;
+        const kan = dets.hasOwnProperty('kan') ? dets['kan'].totalCount : 0;
+        const fc = dets.hasOwnProperty('FC') ? dets['FC'].totalCount : 0;
+        const fe = dets.hasOwnProperty('FE') ? dets['FE'].totalCount : 0;
+        const fclob = dets.hasOwnProperty('F Clob')
+            ? dets['F Clob'].totalCount
+            : 0;
 
-    const computeFLargePct = () => {};
+        return (
+            Math.round(((f + k + kan + fc + fe + fclob) * 100) / totalRes) + '%'
+        );
+    };
 
-    const computeFPlusLargePct = () => {};
+    const computeFPlusLargePct = dets => {
+        const f = dets.hasOwnProperty('F') ? dets['F'].totalCount : 0;
+        const k = dets.hasOwnProperty('K') ? dets['K'].totalCount : 0;
+        const kan = dets.hasOwnProperty('kan') ? dets['kan'].totalCount : 0;
+        const fc = dets.hasOwnProperty('FC') ? dets['FC'].totalCount : 0;
+        const fe = dets.hasOwnProperty('FE') ? dets['FE'].totalCount : 0;
+        const fclob = dets.hasOwnProperty('F Clob')
+            ? dets['F Clob'].totalCount
+            : 0;
+        const fPlus = dets.hasOwnProperty('F') ? dets['F'].pluses : 0;
+        const fPlusminuses = dets.hasOwnProperty('F')
+            ? dets['F'].plusminuses
+            : 0;
+        const kPlus = dets.hasOwnProperty('K') ? dets['K'].pluses : 0;
+        const kanPlus = dets.hasOwnProperty('kan') ? dets['kan'].pluses : 0;
+        const fcPlus = dets.hasOwnProperty('FC') ? dets['FC'].pluses : 0;
+        const fePlus = dets.hasOwnProperty('FE') ? dets['FE'].pluses : 0;
+        const fclobPlus = dets.hasOwnProperty('F Clob')
+            ? dets['F Clob'].pluses
+            : 0;
+
+        return (
+            Math.round(
+                ((fPlus +
+                    fPlusminuses / 2 +
+                    kPlus +
+                    kanPlus +
+                    fcPlus +
+                    fePlus +
+                    fclobPlus) *
+                    100) /
+                    (f + k + kan + fc + fe + fclob)
+            ) + '%'
+        );
+    };
+
+    const computeColorPct = (coloredRes, totalRes) => {
+        return Math.round((coloredRes * 100) / totalRes) + '%';
+    };
 
     return {
         'G%': computeGPct(totalGLocs, totalResponses),
@@ -152,6 +203,9 @@ const computeProcessedResults = results => {
         'A%': computeAPct(contentCountMapping, totalResponses),
         'F%': computeFPct(detCountMapping, totalResponses),
         'F+%': computeFPlusPct(detCountMapping, totalResponses),
+        'Felargi%': computeFLargePct(detCountMapping, totalResponses),
+        'FelargiPlus%': computeFPlusLargePct(detCountMapping),
+        'color%': computeColorPct(coloredResponses, totalResponses),
     };
 };
 
