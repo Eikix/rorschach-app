@@ -70,6 +70,60 @@ const computeProcessedResults = results => {
         return Math.round((Dds + Dos + Dbls) * (100 / totalRes)) + '%';
     };
 
+    const computeHPct = (contents, totalRes) => {
+        const h = contents.hasOwnProperty('H') ? contents['H'] : 0;
+        const hParenthesis = contents.hasOwnProperty('(H)')
+            ? contents['(H)']
+            : 0;
+        const hd = contents.hasOwnProperty('Hd') ? contents['Hd'] : 0;
+        const hdParenthesis = contents.hasOwnProperty('(Hd)')
+            ? contents['(Hd)']
+            : 0;
+        const sceneH = contents.hasOwnProperty('Scène H')
+            ? contents['Scène H']
+            : 0;
+        return (
+            Math.round(
+                (h + hParenthesis + hd + hdParenthesis + sceneH) *
+                    (100 / totalRes)
+            ) + '%'
+        );
+    };
+
+    const computeAPct = (contents, totalRes) => {
+        const a = contents.hasOwnProperty('A') ? contents['A'] : 0;
+        const aParenthesis = contents.hasOwnProperty('(A)')
+            ? contents['(A)']
+            : 0;
+        const ad = contents.hasOwnProperty('Ad') ? contents['Ad'] : 0;
+        const adParenthesis = contents.hasOwnProperty('(Ad)')
+            ? contents['(Ad)']
+            : 0;
+        const sceneA = contents.hasOwnProperty('Scène A')
+            ? contents['Scène A']
+            : 0;
+        return (
+            Math.round(
+                (a + aParenthesis + ad + adParenthesis + sceneA) *
+                    (100 / totalRes)
+            ) + '%'
+        );
+    };
+
+    const TRI = () => {};
+
+    const Fcompl = () => {};
+
+    const FPct = () => {};
+
+    const FPlusPct = () => {};
+
+    const FMinusPct = () => {};
+
+    const FLargePct = () => {};
+
+    const FPlusLargePct = () => {};
+
     return {
         'G%': computeGPct(totalGLocs, totalResponses),
         'D%': computeDPct(totalDLocs, totalResponses),
@@ -83,8 +137,8 @@ const computeProcessedResults = results => {
             DblLocs,
             totalResponses
         ),
-        Dets: detCountMapping,
-        Contents: contentCountMapping,
+        'H%': computeHPct(contentCountMapping, totalResponses),
+        'A%': computeAPct(contentCountMapping, totalResponses),
     };
 };
 
