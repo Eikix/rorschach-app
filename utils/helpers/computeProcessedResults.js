@@ -110,19 +110,30 @@ const computeProcessedResults = results => {
         );
     };
 
-    const TRI = () => {};
+    const computeTRI = () => {};
 
-    const Fcompl = () => {};
+    const computeFcompl = () => {};
 
-    const FPct = () => {};
+    const computeFPct = (dets, totalRes) => {
+        return Math.round((dets['FCount'] * 100) / totalRes) + '%';
+    };
 
-    const FPlusPct = () => {};
+    const computeFPlusPct = dets => {
+        if (dets.hasOwnProperty('F')) {
+            return (
+                Math.round(
+                    ((dets['F'].pluses + dets['F'].plusminuses / 2) * 100) /
+                        dets['FCount']
+                ) + '%'
+            );
+        }
+    };
 
-    const FMinusPct = () => {};
+    const computeFMinusPct = () => {};
 
-    const FLargePct = () => {};
+    const computeFLargePct = () => {};
 
-    const FPlusLargePct = () => {};
+    const computeFPlusLargePct = () => {};
 
     return {
         'G%': computeGPct(totalGLocs, totalResponses),
@@ -139,6 +150,8 @@ const computeProcessedResults = results => {
         ),
         'H%': computeHPct(contentCountMapping, totalResponses),
         'A%': computeAPct(contentCountMapping, totalResponses),
+        'F%': computeFPct(detCountMapping, totalResponses),
+        'F+%': computeFPlusPct(detCountMapping, totalResponses),
     };
 };
 
