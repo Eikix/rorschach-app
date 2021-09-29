@@ -241,29 +241,34 @@ const RorschachTest = () => {
 
                 {selectedPlanche === 11 && (
                     <div className="flex flex-col justify-center items-center shadow-sm rounded-lg text-color1 p-3 lg:p-24 m-12 lg:m-18">
-                        <p className="text-2xl text-center lg:text-3xl mb-12 lg:mb-16">
-                            Entrez les 2 planches préférées et les 2 planches
-                            les moins appréciées par le patient (Optionnel).
-                        </p>
-                        <PreferenceForm savePrefs={savePrefs} />
-                        <p className="text-2xl text-center lg:text-3xl mb-6 mt-12 md:mt-16 lg:mt-24 xl:mt-32">
-                            Vous avez terminé le test de Rorschach. Vous pouvez
-                            désormais générer les résultats.
-                        </p>
-                        <button
-                            onClick={submitResults}
-                            className="text-xl lg:text-2xl rounded-lg p-6 border shadow-sm text-center text-color1 mt-12 hover:bg-gray-100"
-                        >
-                            Générer
-                        </button>
-                        {Object.keys(finalResults).length !== 0 && (
+                        <div>
+                            <p className="text-lg text-center md:text-xl lg:text-3xl mb-12 lg:mb-16">
+                                Entrez les 2 planches préférées et les 2
+                                planches les moins appréciées par le patient
+                                (Optionnel).
+                            </p>
+                            <PreferenceForm savePrefs={savePrefs} />
+                        </div>
+                        <div className="flex flex-col justify-center items-center shadow-sm rounded-lg p-6">
+                            <p className="text-lg text-center md:text-xl lg:text-3xl mb-6 mt-12 md:mt-16 lg:mt-24 xl:mt-32">
+                                Vous avez terminé le test de Rorschach. Vous
+                                pouvez désormais générer les résultats.
+                            </p>
                             <button
-                                onClick={printResults}
-                                className="text-xl lg:text-2xl rounded-lg p-6 border shadow-sm text-center text-white bg-color1 mt-12 hover:bg-color2"
+                                onClick={submitResults}
+                                className="text-xl lg:text-2xl rounded-lg p-6 border shadow-sm text-center text-color1 mt-12 hover:bg-gray-100"
                             >
-                                Voir les résultats
+                                Générer
                             </button>
-                        )}
+                            {Object.keys(finalResults).length !== 0 && (
+                                <button
+                                    onClick={printResults}
+                                    className="text-xl lg:text-2xl rounded-lg p-6 border shadow-sm text-center text-white bg-color1 mt-12 hover:bg-gray-800"
+                                >
+                                    Voir les résultats
+                                </button>
+                            )}
+                        </div>
                     </div>
                 )}
                 <div className="flex justify-around items-center w-full">

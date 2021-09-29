@@ -21,27 +21,27 @@ const computeProcessedResults = results => {
     } = locCountMapping;
 
     const computeGPct = (totalGs, totalRes) => {
-        const res = (totalGs / totalRes) * 100;
+        const res = Math.round((totalGs / totalRes) * 100);
         return res.toString() + '%';
     };
 
     const computeDPct = (totalDs, totalRes) => {
-        const res = (totalDs / totalRes) * 100;
+        const res = Math.round((totalDs / totalRes) * 100);
         return res.toString() + '%';
     };
 
     const computeDdPct = (totalDds, totalRes) => {
-        const res = (totalDds / totalRes) * 100;
+        const res = Math.round((totalDds / totalRes) * 100);
         return res.toString() + '%';
     };
 
     const computeDoPct = (totalDos, totalRes) => {
-        const res = (totalDos / totalRes) * 100;
+        const res = Math.round((totalDos / totalRes) * 100);
         return res.toString() + '%';
     };
 
     const computeDiPct = (totalDis, totalRes) => {
-        const res = (totalDis / totalRes) * 100;
+        const res = Math.round((totalDis / totalRes) * 100);
         return res.toString() + '%';
     };
 
@@ -62,11 +62,13 @@ const computeProcessedResults = results => {
             (contentCountMapping.hasOwnProperty('Sg') &&
                 contentCountMapping['Sg']) ||
             0;
-        const res = ((Hd + Anat + Sex + Sg) / totalResponses) * 100;
+        const res = Math.round(((Hd + Anat + Sex + Sg) / totalResponses) * 100);
         return res.toString() + '%';
     };
 
-    const computeInnerUncertaintyIdx = (Dds, Dos, Dbls) => {};
+    const computeInnerUncertaintyIdx = (Dds, Dos, Dbls, totalRes) => {
+        return Math.round((Dds + Dos + Dbls) * (100 / totalRes)) + '%';
+    };
 
     return {
         'G%': computeGPct(totalGLocs, totalResponses),
@@ -75,6 +77,14 @@ const computeProcessedResults = results => {
         'Do%': computeDoPct(DoLocs, totalResponses),
         'Di%': computeDiPct(DiLocs, totalResponses),
         'IA%': computeAnxietyIdx(contentCountMapping, totalResponses),
+        'IUIdx%': computeInnerUncertaintyIdx(
+            totalDdLocs,
+            DoLocs,
+            DblLocs,
+            totalResponses
+        ),
+        Dets: detCountMapping,
+        Contents: contentCountMapping,
     };
 };
 
