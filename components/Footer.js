@@ -9,6 +9,7 @@ const Footer = () => {
                         className="hover:text-color6"
                         href="https://www.linkedin.com/in/florence-damien-a47ba116b/"
                         target="_blank"
+                        rel="noreferrer"
                     >
                         Florence Damien
                     </a>
@@ -19,6 +20,7 @@ const Footer = () => {
                         className="hover:text-color6"
                         href="https://www.linkedin.com/in/elias-tazartes-a13450155/"
                         target="_blank"
+                        rel="noreferrer"
                     >
                         Elias Tazartes
                     </a>
