@@ -140,7 +140,6 @@ const RorschachTest = () => {
     };
 
     const submitResults = () => {
-        console.log(JSON.stringify(savedPlanches, null, 2));
         setFinalResults(() => processResults(savedPlanches));
         console.log(JSON.stringify(finalResults, null, 2));
     };
