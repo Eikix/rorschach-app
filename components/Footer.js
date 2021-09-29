@@ -4,7 +4,7 @@ const Footer = () => {
             <hr />
             <ul className="flex text-xs md:text-base justify-around my-6 mx-3">
                 <li>
-                    Design et conception par{' '}
+                    Conception par{' '}
                     <a
                         className="hover:text-color6"
                         href="https://www.linkedin.com/in/florence-damien-a47ba116b/"
